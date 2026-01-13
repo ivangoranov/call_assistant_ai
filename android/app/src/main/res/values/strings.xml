@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AI Call Summarizer</string>
+
+    <!-- Login Screen -->
+    <string name="login_title">Вход</string>
+    <string name="email_hint">Имейл</string>
+    <string name="password_hint">Парола</string>
+    <string name="login_button">Вход</string>
+
+    <!-- Dialer Screen -->
+    <string name="dialer_title">Набиране</string>
+    <string name="phone_number_hint">Телефонен номер</string>
+    <string name="call_button">Обади се</string>
+    <string name="end_call_button">Прекъсни</string>
+
+    <!-- Call History Screen -->
+    <string name="history_title">История на обажданията</string>
+    <string name="no_calls">Няма обаждания</string>
+
+    <!-- Call Details Screen -->
+    <string name="details_title">Детайли за обаждане</string>
+    <string name="summary_title">Резюме</string>
+    <string name="tasks_title">Задачи</string>
+    <string name="play_audio">Пусни запис</string>
+
+    <!-- Status Labels -->
+    <string name="status_recording">Записва се</string>
+    <string name="status_processing">Обработва се</string>
+    <string name="status_ready">Готово</string>
+    <string name="status_failed">Грешка</string>
+
+    <!-- Consent Message -->
+    <string name="consent_message">Разговорът се записва с цел организация.</string>
+</resources>
