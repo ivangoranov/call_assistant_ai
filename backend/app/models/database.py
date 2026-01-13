@@ -45,9 +45,11 @@ class User(Base):
     email: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
     hashed_password: Mapped[str] = mapped_column(String(255), nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, default=lambda: datetime.utcnow()
+    )
     updated_at: Mapped[datetime] = mapped_column(
-        DateTime, default=datetime.utcnow, onupdate=datetime.utcnow
+        DateTime, default=lambda: datetime.utcnow(), onupdate=lambda: datetime.utcnow()
     )
 
     # Relationships
@@ -72,11 +74,15 @@ class Call(Base):
     consent_given: Mapped[bool] = mapped_column(Boolean, default=True)
     audio_file_path: Mapped[Optional[str]] = mapped_column(String(500), nullable=True)
     duration_seconds: Mapped[Optional[int]] = mapped_column(nullable=True)
-    started_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    started_at: Mapped[datetime] = mapped_column(
+        DateTime, default=lambda: datetime.utcnow()
+    )
     ended_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, default=lambda: datetime.utcnow()
+    )
     updated_at: Mapped[datetime] = mapped_column(
-        DateTime, default=datetime.utcnow, onupdate=datetime.utcnow
+        DateTime, default=lambda: datetime.utcnow(), onupdate=lambda: datetime.utcnow()
     )
 
     # Relationships
@@ -103,7 +109,9 @@ class Transcript(Base):
     )
     text: Mapped[str] = mapped_column(Text, nullable=False)
     language: Mapped[str] = mapped_column(String(10), default="bg", nullable=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, default=lambda: datetime.utcnow()
+    )
 
     # Relationships
     call: Mapped["Call"] = relationship("Call", back_populates="transcript")
@@ -127,7 +135,9 @@ class Summary(Base):
     amounts: Mapped[Optional[str]] = mapped_column(Text, nullable=True)  # JSON array
     locations: Mapped[Optional[str]] = mapped_column(Text, nullable=True)  # JSON array
     prompt_version: Mapped[str] = mapped_column(String(50), nullable=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, default=lambda: datetime.utcnow()
+    )
 
     # Relationships
     call: Mapped["Call"] = relationship("Call", back_populates="summary")
@@ -147,7 +157,9 @@ class Task(Base):
     task_text: Mapped[str] = mapped_column(Text, nullable=False)
     owner: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     deadline: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, default=lambda: datetime.utcnow()
+    )
 
     # Relationships
     call: Mapped["Call"] = relationship("Call", back_populates="tasks")

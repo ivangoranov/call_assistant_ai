@@ -61,8 +61,8 @@ async def start_call(
 @router.post("/{call_id}/end", response_model=CallResponse)
 async def end_call(
     call_id: str,
+    background_tasks: BackgroundTasks,
     request: Optional[CallEndRequest] = None,
-    background_tasks: BackgroundTasks = None,
 ) -> CallResponse:
     """
     End an ongoing call and trigger AI processing.
@@ -91,8 +91,7 @@ async def end_call(
         call_data["duration_seconds"] = request.duration_seconds
 
     # Trigger background AI processing
-    if background_tasks:
-        background_tasks.add_task(process_call_audio, call_id)
+    background_tasks.add_task(process_call_audio, call_id)
 
     return CallResponse(**call_data)
 
